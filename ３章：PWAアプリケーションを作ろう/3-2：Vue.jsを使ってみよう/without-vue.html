@@ -1,0 +1,12 @@
+<input type="text" onChange="texrchange(this)">
+<div id="message">
+  <p></p>
+</div>
+
+<script>
+function texrchange(e){
+  var mesdiv =  document.getElementById("message");
+  var mes = '<p>Hello, '+e.value+' !</p>';
+  mesdiv.innerHTML=mes;
+}
+</script>
