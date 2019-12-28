@@ -21,6 +21,17 @@
     <!-- Google Maps -->
     <script src="http://maps.google.com/maps/api/js?key=[先ほど取得した API key]&language=ja"></script>
 
+    <style>
+      #map { height: 250px; width: 100%}
+    </style>
+    
+    <script>
+      // 画面遷移関数
+      function move(stop_ids,stop_name){
+        document.querySelector('#navigator').pushPage('page2.html',{data:{stop_ids:stop_ids,stop_name:stop_name}});
+      }
+    </script>
+    
   </head>
   <body>
     <ons-navigator id="navigator" page="page1.html"></ons-navigator>
