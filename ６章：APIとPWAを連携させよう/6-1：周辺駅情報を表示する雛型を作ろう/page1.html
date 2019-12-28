@@ -1,0 +1,36 @@
+<ons-page id="first-page">
+  <ons-toolbar>
+    <div class="center">Train-Time-API</div>
+  </ons-toolbar>
+
+  <div id='app'>
+    <div class="content" style="text-align: center">
+      <h1>周辺駅</h1>
+      <div id="map"></div>
+      <div v-for="s in stations">
+      <div v-on:click="move(s.stop_ids,s.stop_name)" class="card">
+        <h2 class="card__title">{{s.stop_name}}</h2>
+          <div class="card__content">距離 約{{Math.round(s.distance)}}m</div>
+        </div>
+      </div>
+      </br></br></br>
+    </div>
+  </div>
+  <script>
+    // Vueアプリの定義
+    var vue = new Vue({
+      el: '#app',
+      data:{
+        stations:[
+          {"stop_id":"930_04","stop_code":"","stop_name":"林野バスセンター","stop_desc":"","stop_lat":"35.002824","stop_lon":"134.143915571429","zone_id":"930_04","stop_url":"http://unobus.bustei.net/b.htm?T=0930","location_type":"0","platform_code":"","distance":729.1302207667145},
+          {"stop_id":"928_05","stop_code":"","stop_name":"美作第一小学校前","stop_desc":"","stop_lat":"34.997219","stop_lon":"134.141866","zone_id":"928_05","stop_url":"http://unobus.bustei.net/b.htm?T=0928","location_type":"0","platform_code":"","distance":831.3405214083498}
+        ],
+        lat:35.002901,
+        lon:134.135928714286,
+        agency_id:1260001000674,
+        distance:1000000,
+        googlemapscale:14
+      }
+    });
+  </script>
+</ons-page>
