@@ -74,6 +74,12 @@
             position: latlng,
             map: map
           });
+
+          // マーカーのクリック時のイベント
+          google.maps.event.addListener(marker, 'click', function(event) {
+            move(stations[i].stop_ids,stations[i].stop_name);
+          });
+          
         }
       })
       .catch(function (error) {
