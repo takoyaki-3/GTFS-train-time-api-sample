@@ -9,49 +9,28 @@
 
     <!-- Vue.js -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    
+
     <!-- Onsen UI -->
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
-
-    <!-- axios -->
-    <script src="//cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     
+    <!-- axios の追加 -->
+    <script src="//cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <!-- Google Maps -->
-    <script src="http://maps.google.com/maps/api/js?key=AIzaSyDHpe0pSYCOwNgt5RmclrAMGcdMsChcizw&language=ja"></script>
+    <script src="maps.google.com/maps/api/js?key=[先ほど取得した API key]&language=ja"></script> 
 
     <style>
       #map { height: 250px; width: 100%}
     </style>
-    
+
+    <script>
+      ons.ready(function() {
+      });
+    </script>
   </head>
   <body>
     <ons-navigator id="navigator" page="page1.html"></ons-navigator>
-    
-    <div id='app'>
-      <p>{{message}}</p>
-      <ons-button onclick="ons.notification.alert('Hello World!')">Click Me</ons-button>
-    </div>
-
-    <script>
-      // ServiceWorker登録
-      if ('serviceWorker'  in navigator) {
-        navigator.serviceWorker.register('./sw.js').then(function(registration) {
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }).catch(function(err) {
-          console.log('ServiceWorker registration failed: ', err);
-        });
-      }
-
-      // Vueアプリの定義
-      var vue = new Vue({
-        el: '#app',
-        data:{
-          message:'Hello, Vue !'
-        }
-      })
-      
-    </script>
   </body>
 </html>
