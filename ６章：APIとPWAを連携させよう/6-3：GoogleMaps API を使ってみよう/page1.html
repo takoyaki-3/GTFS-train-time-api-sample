@@ -33,15 +33,15 @@
       }
     });
 
-  // Google Maps API
-  var MyLatLng = new google.maps.LatLng(vue.lat, vue.lon);
-  var Options = {
-  disableDefaultUI: true,
-  zoom: vue.googlemapscale,      //地図の縮尺値
-  center: MyLatLng,    //地図の中心座標
-  mapTypeId: 'roadmap'   //地図の種類
-  };
-  var map = new google.maps.Map(document.getElementById('map'), Options);
+    // Google Maps API
+    var MyLatLng = new google.maps.LatLng(vue.lat, vue.lon);
+    var Options = {
+      disableDefaultUI: true,
+      zoom: vue.googlemapscale,      //地図の縮尺値
+      center: MyLatLng,    //地図の中心座標
+      mapTypeId: 'roadmap'   //地図の種類
+    };
+    var map = new google.maps.Map(document.getElementById('map'), Options);
 
     // APIアクセス処理
     let apiurl = 'https://[APIアクセスポイントのURL]/aroundstops?agency_id='+vue.agency_id+'&lat='+vue.lat+'&lon='+vue.lon+'&distance='+vue.distance;

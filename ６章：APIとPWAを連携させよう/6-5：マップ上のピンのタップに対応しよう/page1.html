@@ -36,10 +36,10 @@
     // Google Maps API
     var MyLatLng = new google.maps.LatLng(vue.lat, vue.lon);
     var Options = {
-    disableDefaultUI: true,
-    zoom: vue.googlemapscale,      //地図の縮尺値
-    center: MyLatLng,    //地図の中心座標
-    mapTypeId: 'roadmap'   //地図の種類
+      disableDefaultUI: true,
+      zoom: vue.googlemapscale,      //地図の縮尺値
+      center: MyLatLng,    //地図の中心座標
+      mapTypeId: 'roadmap'   //地図の種類
     };
     var map = new google.maps.Map(document.getElementById('map'), Options);
 
@@ -79,7 +79,7 @@
           google.maps.event.addListener(marker, 'click', function(event) {
             move(stations[i].stop_ids,stations[i].stop_name);
           });
-          
+
         }
       })
       .catch(function (error) {
