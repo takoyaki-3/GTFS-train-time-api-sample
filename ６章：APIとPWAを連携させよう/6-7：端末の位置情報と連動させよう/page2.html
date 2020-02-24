@@ -49,7 +49,7 @@
       let c=0;
       for(let i=0;i<page.data.stop_ids.length;i++){
 
-        var url = 'https://us-central1-train-time-api.cloudfunctions.net/timetableapi?stop_id='+page.data.stop_ids[i]+'&agency_id=1260001000674';
+        var url = 'https://[APIアクセスポイントのURL]/timetableapi?stop_id='+page.data.stop_ids[i]+'&agency_id=1260001000674';
         console.log(url);
         axios.get(url)
         .then(function (response) {

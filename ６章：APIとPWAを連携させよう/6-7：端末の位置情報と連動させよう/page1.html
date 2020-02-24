@@ -47,14 +47,13 @@
         ];
       ons.notification.alert(ErrorMessages[error.code]);
     }
-
     // Vueアプリの定義
     var vue = new Vue({
       el: '#app',
       data:{
         stations:[
-          {"stop_id":"930_04","stop_code":"","stop_name":"林野バスセンター","stop_desc":"","stop_lat":"35.002824","stop_lon":"134.143915571429","zone_id":"930_04","stop_url":"http://unobus.bustei.net/b.htm?T=0930","location_type":"0","platform_code":"","distance":729.1302207667145},
-          {"stop_id":"928_05","stop_code":"","stop_name":"美作第一小学校前","stop_desc":"","stop_lat":"34.997219","stop_lon":"134.141866","zone_id":"928_05","stop_url":"http://unobus.bustei.net/b.htm?T=0928","location_type":"0","platform_code":"","distance":831.3405214083498}
+//        {"stop_id":"930_04","stop_code":"","stop_name":"林野バスセンター","stop_desc":"","stop_lat":"35.002824","stop_lon":"134.143915571429","zone_id":"930_04","stop_url":"http://unobus.bustei.net/b.htm?T=0930","location_type":"0","platform_code":"","distance":729.1302207667145},
+//        {"stop_id":"928_05","stop_code":"","stop_name":"美作第一小学校前","stop_desc":"","stop_lat":"34.997219","stop_lon":"134.141866","zone_id":"928_05","stop_url":"http://unobus.bustei.net/b.htm?T=0928","location_type":"0","platform_code":"","distance":831.3405214083498}
         ],
         lat:35.002901,
         lon:134.135928714286,
@@ -86,6 +85,7 @@
         vue.lat=location_lat;
         vue.lon=location_lon;
       }
+      API_Access();
     }
     SetLocation();
 
@@ -101,7 +101,7 @@
       var map = new google.maps.Map(document.getElementById('map'), Options);
 
       // APIアクセス処理
-      let apiurl = 'https://us-central1-train-time-api.cloudfunctions.net/aroundstops?agency_id='+vue.agency_id+'&lat='+vue.lat+'&lon='+vue.lon+'&distance='+vue.distance;
+      let apiurl = 'https://[APIアクセスポイントのURL]/aroundstops?agency_id='+vue.agency_id+'&lat='+vue.lat+'&lon='+vue.lon+'&distance='+vue.distance;
       console.log(apiurl);
       axios.get(apiurl)
         .then(function (response) {
@@ -142,6 +142,6 @@
         .catch(function (error) {
           console.log('error occurred');
         });
-    }
+  }
   </script>
 </ons-page>
