@@ -18,10 +18,15 @@ exports.hello = functions.https.onRequest((request,response) => {
 // timetableapi関数の定義
 exports.timetableapi = functions.https.onRequest((request,response) => {
 
+  // CORS用にAccess-Control-Allow系ヘッダを追加
+  response.set('Access-Control-Allow-Origin', '*');
+  response.set('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST');
+  response.set('Access-Control-Allow-Headers', 'Content-Type');
+
   let stoptimesurl = 'https://firebasestorage.googleapis.com/v0/b/[Firebaseのプロジェクト名].appspot.com/o/'+request.query.agency_id+'%2Fstop_times.json?alt=media';
   let calendarurl = 'https://firebasestorage.googleapis.com/v0/b/[Firebaseのプロジェクト名].appspot.com/o/'+request.query.agency_id+'%2Fcalendar.json?alt=media';
   let calendar_datesurl = 'https://firebasestorage.googleapis.com/v0/b/[Firebaseのプロジェクト名].appspot.com/o/'+request.query.agency_id+'%2Fcalendar_dates.json?alt=media';
-  let tripsurl = 'https://firebasestorage.googleapis.com/v0/b/[Firebaseのプロジェクト名].appspot.com/o/'+request.query.agency_id+'%2Ftrips.json?alt=media';
+  let tripsurl = 'https://firebasestorage.googleapis.com/v0/b/[Firebaseのプロジェクト名]/o/'+request.query.agency_id+'%2Ftrips.json?alt=media';
 
   const https = require('https');
 

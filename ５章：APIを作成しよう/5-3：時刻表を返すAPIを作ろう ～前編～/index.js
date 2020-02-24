@@ -26,7 +26,7 @@ exports.timetableapi = functions.https.onRequest((request,response) => {
   let stoptimesurl = 'https://firebasestorage.googleapis.com/v0/b/[Firebaseのプロジェクト名].appspot.com/o/'+request.query.agency_id+'%2Fstop_times.json?alt=media';
   let calendarurl = 'https://firebasestorage.googleapis.com/v0/b/[Firebaseのプロジェクト名].appspot.com/o/'+request.query.agency_id+'%2Fcalendar.json?alt=media';
   let calendar_datesurl = 'https://firebasestorage.googleapis.com/v0/b/[Firebaseのプロジェクト名].appspot.com/o/'+request.query.agency_id+'%2Fcalendar_dates.json?alt=media';
-  let tripsurl = 'https://firebasestorage.googleapis.com/v0/b/[Firebaseのプロジェクト名].appspot.com/o/'+request.query.agency_id+'%2Ftrips.json?alt=media'; 
+  let tripsurl = 'https://firebasestorage.googleapis.com/v0/b/[Firebaseのプロジェクト名].appspot.com/o/'+request.query.agency_id+'%2Ftrips.json?alt=media';
 
   const https = require('https');
 
@@ -42,8 +42,6 @@ exports.timetableapi = functions.https.onRequest((request,response) => {
         if(stoptimes_result[i].stop_id!==request.query.stop_id) continue;
         a.push(stoptimes_result[i]);
       }
-      
-      // このパートでは、ここに追記していきます
 
       response.send(JSON.stringify(a));
       return;
