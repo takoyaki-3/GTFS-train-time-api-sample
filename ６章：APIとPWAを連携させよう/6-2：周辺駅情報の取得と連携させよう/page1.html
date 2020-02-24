@@ -32,5 +32,35 @@
         googlemapscale:14
       }
     });
+
+    // APIアクセス処理
+    let apiurl = 'https://[APIアクセスポイントのURL]/aroundstops?agency_id='+vue.agency_id+'&lat='+vue.lat+'&lon='+vue.lon+'&distance='+vue.distance;
+    console.log(apiurl);
+    axios.get(apiurl)
+      .then(function (response) {
+
+        // 駅情報を初期化
+        vue.stations = [];
+        var stations = response.data;
+
+        // vue.stations にデータを追加
+        for(let i=0;i<stations.length;i++){
+
+          // 既に追加した駅の場合、追加しない
+          let f=true;
+          for(let j=0;j<vue.stations.length;j++){
+            if(stations[i].stop_name!=vue.stations[j].stop_name) continue;
+            f=false;
+            vue.stations[j].stop_ids.push(stations[i].stop_id);
+            if(stations[i].distance < vue.stations[j].distance) vue.stations[j].distance=stations[i].distance;
+          }
+          if(f==false) continue;
+          stations[i].stop_ids = [stations[i].stop_id];
+          vue.stations.push(stations[i]);
+        }
+      })
+      .catch(function (error) {
+        console.log('error occurred');
+      });
   </script>
 </ons-page>
