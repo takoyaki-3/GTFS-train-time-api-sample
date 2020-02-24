@@ -21,7 +21,7 @@
     // Geolocation APIに対応しているか判定
     if(navigator.geolocation){
       // 現在位置を取得できる場合の処理
-      navigator.geolocation.getCurrentPosition( SuccessGetlocation , ErrorGetlocation , optionObj );
+      navigator.geolocation.getCurrentPosition( SuccessGetlocation , ErrorGetlocation );
     } else {
       // 現在位置を取得できない場合の処理
       ons.notification.alert('位置情報の取得に失敗しました。');
@@ -47,15 +47,14 @@
         ];
       ons.notification.alert(ErrorMessages[error.code]);
     }
-    
+
     // Vueアプリの定義
     var vue = new Vue({
-      el: '#'+vueappid,
+      el: '#app',
       data:{
         stations:[
-          // デバッグ用の初期バス停をコメントアウトする
-//          {"stop_id":"930_04","stop_code":"","stop_name":"林野バスセンター","stop_desc":"","stop_lat":"35.002824","stop_lon":"134.143915571429","zone_id":"930_04","stop_url":"http://unobus.bustei.net/b.htm?T=0930","location_type":"0","platform_code":"","distance":729.1302207667145},
-//          {"stop_id":"928_05","stop_code":"","stop_name":"美作第一小学校前","stop_desc":"","stop_lat":"34.997219","stop_lon":"134.141866","zone_id":"928_05","stop_url":"http://unobus.bustei.net/b.htm?T=0928","location_type":"0","platform_code":"","distance":831.3405214083498}
+          {"stop_id":"930_04","stop_code":"","stop_name":"林野バスセンター","stop_desc":"","stop_lat":"35.002824","stop_lon":"134.143915571429","zone_id":"930_04","stop_url":"http://unobus.bustei.net/b.htm?T=0930","location_type":"0","platform_code":"","distance":729.1302207667145},
+          {"stop_id":"928_05","stop_code":"","stop_name":"美作第一小学校前","stop_desc":"","stop_lat":"34.997219","stop_lon":"134.141866","zone_id":"928_05","stop_url":"http://unobus.bustei.net/b.htm?T=0928","location_type":"0","platform_code":"","distance":831.3405214083498}
         ],
         lat:35.002901,
         lon:134.135928714286,
@@ -94,15 +93,15 @@
       // Google Maps API
       var MyLatLng = new google.maps.LatLng(vue.lat, vue.lon);
       var Options = {
-      disableDefaultUI: true,
-      zoom: vue.googlemapscale,      //地図の縮尺値
-      center: MyLatLng,              //地図の中心座標
-      mapTypeId: 'roadmap'           //地図の種類
+        disableDefaultUI: true,
+        zoom: vue.googlemapscale,      //地図の縮尺値
+        center: MyLatLng,    //地図の中心座標
+        mapTypeId: 'roadmap'   //地図の種類
       };
       var map = new google.maps.Map(document.getElementById('map'), Options);
 
       // APIアクセス処理
-      let apiurl = 'https://[APIアクセスポイントのURL]/aroundstops?agency_id='+vue.agency_id+'&lat='+vue.lat+'&lon='+vue.lon+'&distance='+vue.distance;
+      let apiurl = 'https://us-central1-train-time-api.cloudfunctions.net/aroundstops?agency_id='+vue.agency_id+'&lat='+vue.lat+'&lon='+vue.lon+'&distance='+vue.distance;
       console.log(apiurl);
       axios.get(apiurl)
         .then(function (response) {
@@ -137,7 +136,7 @@
             google.maps.event.addListener(marker, 'click', function(event) {
               move(stations[i].stop_ids,stations[i].stop_name);
             });
-            
+
           }
         })
         .catch(function (error) {

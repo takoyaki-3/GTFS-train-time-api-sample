@@ -9,7 +9,7 @@
       <h1>{{stop_name}}</h1>
    
       <div v-if="now_loading">
-        <img src="./images/loading.gif"></img>
+        <img src="./images/loading.gif">
         <p>Now Loading ...</p>
       </div>
 
@@ -22,12 +22,10 @@
     </div>
   </div>
   <script>
-    let vueappid = mkramstring();
-    document.getElementById("app2").setAttribute("id", vueappid);
 
     // Vueアプリの定義
     var vue = new Vue({
-      el: '#'+vueappid,
+      el: '#app2',
       data:{
         stop_name:'',
         stop_times:[],
@@ -51,7 +49,7 @@
       let c=0;
       for(let i=0;i<page.data.stop_ids.length;i++){
 
-        var url = 'https://[APIアクセスポイントのURL]/timetableapi?stop_id='+page.data.stop_ids[i]+'&agency_id=1260001000674';
+        var url = 'https://us-central1-train-time-api.cloudfunctions.net/timetableapi?stop_id='+page.data.stop_ids[i]+'&agency_id=1260001000674';
         console.log(url);
         axios.get(url)
         .then(function (response) {
