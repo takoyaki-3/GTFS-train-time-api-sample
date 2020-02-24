@@ -9,42 +9,22 @@
 
     <!-- Vue.js -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    
+
     <!-- Onsen UI -->
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
     
+    <!-- 次の行を追記 -->
     <!-- axios -->
     <script src="//cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+    <script>
+      ons.ready(function() {
+      });
+    </script>
   </head>
   <body>
     <ons-navigator id="navigator" page="page1.html"></ons-navigator>
-    
-    <div id='app'>
-      <p>{{message}}</p>
-      <ons-button onclick="ons.notification.alert('Hello World!')">Click Me</ons-button>
-    </div>
-
-    <script>
-      // ServiceWorker登録
-      if ('serviceWorker'  in navigator) {
-        navigator.serviceWorker.register('./sw.js').then(function(registration) {
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }).catch(function(err) {
-          console.log('ServiceWorker registration failed: ', err);
-        });
-      }
-
-      // Vueアプリの定義
-      var vue = new Vue({
-        el: '#app',
-        data:{
-          message:'Hello, Vue !'
-        }
-      })
-      
-    </script>
   </body>
 </html>
