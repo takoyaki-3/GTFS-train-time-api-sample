@@ -2,8 +2,6 @@
 var CACHE_NAME = 'simple-pwa-caches';
 var urlsToCache = [
   './css/style.css',
-  './page1.html',
-  './page2.html',
   './images/loading.gif'
 ];
 // インストール処理
