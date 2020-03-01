@@ -17,6 +17,9 @@
     </div>
   </div>
   <script>
+    // 位置情報取得結果を保存する変数
+    var location_lat,location_lon,IsSuccessGetLocation=false;
+    
     // 端末の現在地情報取得
     // Geolocation APIに対応しているか判定
     if(navigator.geolocation){
@@ -27,14 +30,13 @@
       ons.notification.alert('位置情報の取得に失敗しました。');
     }
 
-    // 位置情報取得結果を保存する変数
-    var location_lat,location_lon,IsSuccessGetLocation=false;
-
     // 位置情報取得成功時
     function SuccessGetlocation(pos){
       IsSuccessGetLocation=true;
       location_lat=pos.coords.latitude;
       location_lon=pos.coords.longitude;
+      // 位置情報の設定
+      SetLocation();
     }
     
     // 位置情報取得失敗時
