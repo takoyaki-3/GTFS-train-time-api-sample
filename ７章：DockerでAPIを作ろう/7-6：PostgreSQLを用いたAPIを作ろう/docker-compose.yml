@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  postgis:
+    image:
+      kartoza/postgis
+    environment:
+      - POSTGRES_PASS=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DBNAME=postgres
+    restart: always
+  pgadmin4:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    ports:
+        - 8000:80
+    volumes:
+        - ./docker/pgadmin4:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: mail
+      PGADMIN_DEFAULT_PASSWORD: root
+    restart: always
+  importer:
+    image:
+      takoyaki3/gtfsdb
+    volumes:
+      - ./volume:/volume
+    command:
+      bash start.sh
+  node:
+    image: "node:13.13.0-stretch-slim"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+        - NODE_ENV=production
+    volumes:
+        - ./node/:/home/node/app
+    ports:
+        - "3001:3001"
+    command: "npm start"
